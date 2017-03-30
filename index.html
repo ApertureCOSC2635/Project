@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>EasyPass Secure Password Manager</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+		<script>
+		$("properLoad").load(function(){
+			$('.answers').hide();
+			$('.setup-complete').hide();
+			$('.login').hide();
+			$('.setup-complete').hide();
+			$('.setup-confirm').hide();
+			$('.show-passwords').hide();
+
+
+			$('.submit-questions').on('click', function(){
+				$('.questions').hide();
+				$('.answer1').text($('#question1').val());
+				$('.answer2').text($('#question2').val());
+				$('.answer3').text($('#question3').val());
+				$('.answers').show();
+			});
+
+			$('.submit-answers').on('click', function(){
+				$('.answers').hide();
+				$('.setup-complete').show();
+			});
+
+			$('.submit-email').on('click', function(){
+				$('.setup-complete').hide();
+				$('.setup-confirm').show();
+			});
+
+			$('.go-login').on('click', function(){
+				$('.setup-confirm').hide();
+				$('.login').show();
+				$('.login-questions').hide();
+			});
+
+			$('.login-email').on('click', function(){
+				$('.login-email').hide();
+				$('.login p').text("You didn't think it was that easy did you? Answer the following questions to login.");
+				$('.answerLogin1').text($('#question1').val());
+				$('.answerLogin2').text($('#question2').val());
+				$('.answerLogin3').text($('#question3').val());
+				$('.login-questions').show();
+			});
+
+			$('.login-answers').on('click', function(){
+				$('.login').hide();
+				$('.show-passwords').show();
+			});});
+	</script>
+	</head>
+	<body>
+
+		<div class="container questions col-md-4 offset-md-4">
+			<h1>EasyPass Logo</h1>
+			<p>Welcome to EasyPass! To setup your account please create 3 unique security questions below.</p>
+			<form>
+	  			<div class="form-group">
+	    			<label for="question1">Question 1</label>
+	    			<input type="text" class="form-control" id="question1" aria-describedby="questionHelp" placeholder="In millimeters how long is my big toe?">
+	    			<small id="questionHelp" class="form-text text-muted">Enter a unique question that only you would know the answer to.</small>
+	  			</div>
+	  			<div class="form-group">
+	    			<label for="question2">Question 2</label>
+	    			<input type="text" class="form-control" id="question2" aria-describedby="questionHelp" placeholder="In millimeters how long is my big toe?">
+	    			<small id="questionHelp" class="form-text text-muted">Enter a unique question that only you would know the answer to.</small>
+	  			</div>
+	  			<div class="form-group">
+	    			<label for="question3">Question 3</label>
+	    			<input type="text" class="form-control" id="question3" aria-describedby="questionHelp" placeholder="In millimeters how long is my big toe?">
+	    			<small id="questionHelp" class="form-text text-muted">Enter a unique question that only you would know the answer to.</small>
+	  			</div>
+	  			<button type="submit" class="btn btn-default submit-questions" onclick="return false;">Done!</button>
+	  		</form>
+		</div>
+
+		<div class="container answers col-md-4 offset-md-4">
+			<h1>EasyPass Logo</h1>
+			<p>Your questions have been set! To finish your setup please enter answers to your questions below.</p>
+			<form>
+	  			<div class="form-group">
+	    			<label class="answer1" for="answer1">Answer to Question 1</label>
+	    			<input type="text" class="form-control" id="answer1" aria-describedby="answerHelp1" placeholder="Answer 1">
+	    			<small id="answerHelp1" class="form-text text-muted"></small>
+	  			</div>
+	  			<div class="form-group">
+	    			<label class="answer2" for="answer2">Answer to Question 2</label>
+	    			<input type="text" class="form-control" id="answer2" aria-describedby="answerHelp2" placeholder="Answer 2">
+	    			<small id="answerHelp2" class="form-text text-muted"></small>
+	  			</div>
+	  			<div class="form-group">
+	    			<label class="answer3" for="answer3">Answer to Question 3</label>
+	    			<input type="text" class="form-control" id="answer3" aria-describedby="answerHelp3" placeholder="Answer 3">
+	    			<small id="answerHelp3" class="form-text text-muted"></small>
+	  			</div>
+	  			<button type="submit" class="btn btn-default submit-answers" onclick="return false;">Done!</button>
+	  		</form>
+		</div>
+
+		<div class="container setup-complete col-md-4 offset-md-4">
+			<h1>EasyPass Logo</h1>
+			<p><b>Wait!</b> One last thing. What is your email address? Surely you can remember that.</p>
+			<form>
+	  			<div class="form-group">
+	    			<label for="email">Email Address:</label>
+	    			<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="forgetful@iforget.com">
+	    			<small id="emailHelp" class="form-text text-muted">Please enter your email address. This will be used to access your account.</small>
+	  			</div>
+	  			<button type="submit" class="btn btn-default submit-email" onclick="return false;">Finally Done!</button>
+	  		</form>
+		</div>
+
+		<div class="container setup-confirm col-md-4 offset-md-4">
+			<h1>EasyPass Logo</h1>
+			<p>Thanks for setting up your account. Select GO to login and begin using EasyPass.</p>
+			<button type="button" class="btn btn-secondary go-login" onclick="return false;">Go!</button>
+		</div>
+
+		<div class="container login col-md-4 offset-md-4">
+			<h1>EasyPass Logo</h1>
+			<p>Login to your account.</p>
+			<form class="login-email">
+	  			<div class="form-group">
+	    			<label for="email">Enter your email address to login.</label>
+	    			<input type="email" class="form-control" id="email-login" placeholder="forgetful@iforget.com">
+	  			</div>
+	  			<button type="submit" class="btn btn-default login-email" onclick="return false;">Login</button>
+	  		</form>
+	  		<form class="login-questions">
+	  			<div class="form-group">
+	    			<label class="answerLogin1" for="answerLogin1"></label>
+	    			<input type="text" class="form-control" id="answerLogin1" placeholder="Answer 1">
+	  			</div>
+	  			<div class="form-group">
+	    			<label class="answerLogin2" for="answerLogin2"></label>
+	    			<input type="text" class="form-control" id="answerLogin2" placeholder="Answer 2">
+	  			</div>
+	  			<div class="form-group">
+	    			<label class="answerLogin3" for="answerLogin3"></label>
+	    			<input type="text" class="form-control" id="answerLogin3" placeholder="Answer 3">
+	  			</div>
+	  			<button type="submit" class="btn btn-default login-answers" onclick="return false;">Login</button>
+	  		</form>
+		</div>
+
+		<div class="container show-passwords col-md-4 offset-md-4">
+			<h1>EasyPass Logo</h1>
+			<p>Your Passwords</p>
+			<form>
+	  			<div class="form-group">
+	    			<label for="paaaaaassword">Add a new password</label>
+	    			<input type="text" class="form-control" id="description" placeholder="Description">
+	    			<input type="text" class="form-control" id="paaaaaassword" placeholder="Password">
+	  			</div>
+	  			<button type="submit" class="btn btn-default" onclick="return false;">Add</button>
+	  		</form>
+			<form>
+				<div class="form-group">
+					<textarea class="form-control" id="textarea" rows="15">Pornhub: 12345securepassword
+Neopets: 54312securepassword
+					</textarea>
+				</div>
+			</form>
+		</div>
+
+
+	</body>
+</html>
