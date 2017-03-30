@@ -1,5 +1,5 @@
 # Project
-Project Description
+
 Here at Aperture Science Labs (ASL), we aim to use science (in this case computer science) in order to make life easier for all humankind.
 For example: A normal human can easily remember at least one single password, but remembering hundreds for every little thing? Simply using the same password is not very secure from those humans or robots with nefarious intent.
 Our latest project is to create a secure yet password free web-based "one stop shop" password storage website, accessible from anywhere in the world any from any device.
