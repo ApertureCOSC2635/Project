@@ -1,0 +1,42 @@
+<html>
+	<head>
+
+
+		<script src="jquery-3.2.0.js"></script>
+		<script src="CryptoJS/components/core-min.js"></script>
+		<script src="CryptoJS/rollups/sha1.js"></script>
+		<script src="CryptoJS/rollups/aes.js"></script>
+		<script src="CryptoJS/components/enc-base64-min.js"></script>
+		<script src="CryptoJS/components/enc-utf16-min.js"></script>
+
+
+		<script>
+		var key = "testkey";
+		var encrypt = function(obj, key) {
+
+			var objEnc = CryptoJS.AES.encrypt(obj, key);
+			alert(objEnc);
+			return objEnc;
+		};
+		var decrypt = function(obj, key) {
+			var decrypted = CryptoJS.AES.decrypt(obj, key).toString(CryptoJS.enc.Utf8);
+			return decrypted
+		};
+
+
+		</script>
+
+	</head>
+	<body>
+		<table>
+			<tr>
+					<td>Input</td>
+					<td><input type="text" id="obj"/></td>
+					<td><button onclick="encrypt($('#obj').val(),key);">Encrypt</button></td>
+			</tr>
+			<tr>
+				<td>Result: </td>
+				<td span id=""></span></td>
+			</tr>
+	</body>
+</html>
