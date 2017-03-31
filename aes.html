@@ -9,10 +9,9 @@
 		<script src="CryptoJS/components/enc-base64-min.js"></script>
 		<script src="CryptoJS/components/enc-utf16-min.js"></script>
 
-
 		<script>
 //obj is the object being encrypted
-//key is the key to run it against			
+//key is the key to run it against
 		var key = "testkey";
 		var encrypt = function(obj, key) {
 //objEnc is the encrypted obj
@@ -21,8 +20,9 @@
 			return objEnc;
 		};
 		var decrypt = function(obj, key) {
-			var decrypted = CryptoJS.AES.decrypt(obj, key).toString(CryptoJS.enc.Utf8);
-			return decrypted
+			var decrypted = CryptoJS.AES.decrypt(obj, key);
+			alert(decrypted);
+			return decrypted;
 		};
 
 
@@ -31,11 +31,16 @@
 	</head>
 	<body>
 		<table>
-		<tr>
-			<td>Input</td>
-			<td><input type="text" id="obj"/></td>
-			<td><button onclick="encrypt($('#obj').val(),key);">Encrypt</button></td>
-		</tr>
+			<tr>
+				<td>Input</td>
+				<td><input type="text" id="obj"/></td>
+				<td><button onclick="encrypt($('#obj').val(),key);">Encrypt</button></td>
+				<tr>
+				<td>Decrypt</td>
+				<td><input type="" id="objEnc"/></td>
+				<td><button onclick="decrypt($('#obj').val(),key);">Decrypt</button></td>
+			</tr>
+			</tr>
 		</table>
 	</body>
 </html>
