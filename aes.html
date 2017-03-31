@@ -9,12 +9,13 @@
 		<script src="CryptoJS/components/enc-base64-min.js"></script>
 		<script src="CryptoJS/components/enc-utf16-min.js"></script>
 
-\\obj is the object being encrypted
-\\key is the key to run it against
+
 		<script>
+//obj is the object being encrypted
+//key is the key to run it against			
 		var key = "testkey";
 		var encrypt = function(obj, key) {
-\\objEnc is the encrypted obj
+//objEnc is the encrypted obj
 			var objEnc = CryptoJS.AES.encrypt(obj, key);
 			alert(objEnc);
 			return objEnc;
