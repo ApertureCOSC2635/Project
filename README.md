@@ -1,46 +1,120 @@
-# Project
+# EasyPass
 
-Here at Aperture Science Labs (ASL), we aim to use science (in this case computer science) in order to make life easier for all humankind.
-For example: A normal human can easily remember at least one single password, but remembering hundreds for every little thing? Simply using the same password is not very secure from those humans or robots with nefarious intent.
-Our latest project is to create a secure yet password free web-based "one stop shop" password storage website, accessible from anywhere in the world any from any device.
-Our team is developing a process called EasyPass. Using customisable and editable questions and answers, EasyPass will encrypt your password list so you will never again have to worry about O's and 0's, 1's and l's or which special character went where. You will never need to worry about being hacked either. Trust us on that one!
-As all these questions are provided by you, as such only you know the correct answer. With the exception of mind readers, (ASL does not speculate in science fiction) you will never be hacked by anyone else again.
-Just another way that the team at Aperture Science Labs is using science to make life easier for you.
+EasyPass is a University project completed for the Unit COSC2635 at RMIT University. The aim of this project was to plan, develop and deliver a password free secure application for storage of a users credentials.
 
-Demonstrable Outcomes
-Minimum Viable Product
-The application will provide an interface to the user to allow their passwords to be stored online.
+## Getting Started
 
-Validation Test : Test case 1 will confirm that this outcome will be met through an exercise of the interface functions. Additionally, this will be demonstrated as part of the final presentation.
+Please use the latest version from the master
+
+### Prerequisites
+
+Ubuntu 14.04,  MySQL 5.6 or later, Apache2, PHP
+
+### Installing
+1.	Install Lamp Stack in Ubuntu 14.04:
+
+Install apache: 
+sudo apt-get update
+sudo apt-get install apache2
+
+Install MySQL:
+sudo apt-get install mysql-server php5-mysql
+sudo mysql_install_db
+sudo mysql_secure_installation
+
+Install PHP:
+sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+
+Edit dir.conf to to request PHP first:
+sudo nano /etc/apache2/mods-enabled/dir.conf
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+
+sudo service apache2 restart
+
+Install PHP modules as required.
+
+2.	Copy All files to the webserver directory. 
+
+3.	Properly configure server:
+
+Edit /etc/sysctl.d/10-network-security.conf to this:
+ 
+# Ignore ICMP broadcast requests
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+ 
+# Disable source packet routing
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv6.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv6.conf.default.accept_source_route = 0
+ 
+# Ignore send redirects
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+ 
+# Block SYN attacks
+net.ipv4.tcp_max_syn_backlog = 2048
+net.ipv4.tcp_synack_retries = 2
+net.ipv4.tcp_syn_retries = 5
+ 
+# Log Martians
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+ 
+# Ignore ICMP redirects
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv6.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv6.conf.default.accept_redirects = 0
+ 
+# Ignore Directed pings
+net.ipv4.icmp_echo_ignore_all = 1
+Load the new rules:
+service procps start
+Edit /etc/php5/apache2/php.ini to include:
+exec, system, shell_exec, and passthru to disable_functions
+Change expose_php to Off
+Ensure that display_errors, track_errors and html_errors are set to Off
+ 
+Edit /etc/apache2/conf-enabled/security.conf to include:
+
+ServerTokens Prod
+ServerSignature Off
+TraceEnable Off
+Header unset ETag
+FileETag None
+
+To take effect enable mod_headers:
+ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
+
+service apache2 restart
 
 
-The security for this will be provided by the user setting three questions and the answers.
 
-Validation Test : Test case 2 will confirm that this outcome will be met by ensuring the user can set three questions and then provide their answers. Additionally, this will be demonstrated as part of the final presentation.
+4.	Create the MySQL Database:
 
-The questions will be stored on the website encrypted and the user’s email address will be hashed and used as the password (a weak security feature).
+create database easypass;
 
-Validation Test : Test case 3 will confirm that this outcome will be met through inspection of the text file containing the user's questions.
+create table user (id int(11) NOT NULL AUTO_INCREMENT, email varchar(111) NOT NULL, password varchar(111) NOT NULL, q1 text DEFAULT NULL, q1a varchar(111) DEFAULT NULL, q2 text DEFAULT NULL, q2a varchar(111) DEFAULT NULL, q3 text DEFAULT NULL, q3a varchar(111) DEFAULT NULL, created_at datetime DEFAULT CURRENT_TIMESTAMP, updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id));
 
-The password file will also be encrypted and the answers to the questions will be aggregated, hashed and this will be used to unlock the password file (a strong security feature).
+## Test that the server is working correctly 
 
-Validation Test : Test case  will confirm that this outcome will be met through inspection of the text file containing the user's questions.
+Run the application from a web browser to ensure that everything is working correctly.
 
-The application will use a clean, easy to navigate interface with minimal clutter and helpful prompts to the user. The application interface style will be constructed using CSS3.
+## Built With
 
-Validation Test : The CSS file will be run through the W3C CSS validator.
-Extended Features
-A basic two factor authentication will be used where a second credential (like a random number) will be sent to the user mobile phone via SMS. This number will be used to encrypt the super-password a second time for transmission. At the far end the hashed password will be decrypted by the random number and then can unlock the password file. This is to further mitigate against potential phishing attacks (like from https://EasyPass.dodgy.ru) against unsophisticated users.
+* [Bootstrap]( http://getbootstrap.com/) - Framework
+* [CyptoJS]( https://github.com/sytelus/CryptoJS) – Crypto Library
 
-Validation Test : If implemented, the two-factor authentication will be demonstrated during the application presentation video.
+## Authors
 
+Scott
+Rhys
+Diana
+Gerry
+Nic
 
-The application will implement a basic anti-brute force protection by setting a limit on the number of authentication attempts.
+## License
 
-Validation Test : A test harness will be created to trigger the anti-brute force protection and the results recorded.
-
-
-The application will make use of modern anti-robot techniques like Captchas etc.
-
-
-Validation Test : Demonstration of the Captcha technology during the assignment presentation.
