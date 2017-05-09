@@ -2,7 +2,7 @@
 	<head>
 
 
-		<script src="jquery-3.2.0.js"></script>
+		<script src="jquery-3.2.1.min.js"></script>
 		<script src="CryptoJS/components/core-min.js"></script>
 		<script src="CryptoJS/rollups/sha1.js"></script>
 		<script src="CryptoJS/rollups/aes.js"></script>
@@ -12,6 +12,7 @@
 		<script>
 //obj is the object being encrypted
 //key is the key to run it against
+		//var key = "ans1, ans2, ans3"
 		var key = "testkey";
 		var encrypt = function(obj, key) {
 //objEnc is the encrypted obj
@@ -38,7 +39,7 @@
 				<tr>
 				<td>Decrypt</td>
 				<td><input type="" id="objEnc"/></td>
-				<td><button onclick="decrypt($('#obj').val(),key);">Decrypt</button></td>
+				<td><button onclick="decrypt($('#objEnc').val(),key);">Decrypt</button></td>
 			</tr>
 			</tr>
 		</table>
