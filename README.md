@@ -37,12 +37,6 @@ Install PHP modules as required.
 
 ### 2.	Copy All files to the webserver directory. 
 
-### 3.	Create the MySQL Database:
-
-create database easypass;
-
-create table user (id int(11) NOT NULL AUTO_INCREMENT, email varchar(111) NOT NULL, password varchar(111) NOT NULL, q1 text DEFAULT NULL, q1a varchar(111) DEFAULT NULL, q2 text DEFAULT NULL, q2a varchar(111) DEFAULT NULL, q3 text DEFAULT NULL, q3a varchar(111) DEFAULT NULL, created_at datetime DEFAULT CURRENT_TIMESTAMP, updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id));
-
 ## Test that the server is working correctly 
 
 Run the application from a web browser to ensure that everything is working correctly.
